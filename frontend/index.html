@@ -72,7 +72,7 @@
     padding: 10px 12px; border-radius: 12px;
     cursor: pointer; transition: all 0.18s;
     font-size: 14px; font-weight: 500; color: var(--muted);
-    text-decoration: none;
+    text-decoration: none; border: none; background: none; width: 100%; text-align: left;
   }
   .nav-item:hover { background: var(--purple-pale); color: var(--purple); }
   .nav-item.active { background: var(--purple-pale); color: var(--purple); font-weight: 600; }
@@ -87,8 +87,9 @@
   .user-card {
     display: flex; align-items: center; gap: 10px;
     padding: 12px; border-radius: 12px; background: var(--purple-pale);
-    cursor: pointer;
+    cursor: pointer; transition: all 0.18s;
   }
+  .user-card:hover { background: var(--purple-pale); box-shadow: 0 0 0 2px var(--purple-light); }
   .user-avatar {
     width: 36px; height: 36px; border-radius: 50%;
     background: linear-gradient(135deg, var(--purple), var(--purple-light));
@@ -100,12 +101,7 @@
   .user-role { font-size: 11px; color: var(--muted); }
 
   /* ── MAIN ── */
-  .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
   /* ── TOPBAR ── */
   .topbar {
@@ -115,17 +111,13 @@
     border-bottom: 1px solid var(--border);
   }
   .topbar-greeting { flex: 1; }
-  .topbar-greeting h2 {
-    font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700;
-    color: var(--text);
-  }
+  .topbar-greeting h2 { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); }
   .topbar-greeting p { font-size: 13px; color: var(--muted); margin-top: 1px; }
 
   .search-box {
     display: flex; align-items: center; gap: 8px;
     background: var(--bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: 8px 14px;
-    width: 220px;
+    border-radius: 12px; padding: 8px 14px; width: 220px;
   }
   .search-box input {
     border: none; background: none; outline: none;
@@ -142,58 +134,47 @@
     position: relative;
   }
   .btn-icon:hover { background: var(--purple-pale); border-color: var(--purple-light); }
-  .notif-dot {
-    position: absolute; top: 6px; right: 6px;
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--red); border: 2px solid white;
+
+  /* Profile icon in topbar */
+  .topbar-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--purple-light));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 15px;
+    cursor: pointer; flex-shrink: 0; transition: all 0.18s;
+    border: 2px solid transparent;
   }
+  .topbar-avatar:hover { border-color: var(--purple); box-shadow: 0 0 0 3px var(--purple-pale); }
 
   /* ── CONTENT AREA ── */
-  .content-wrap {
-    flex: 1; display: flex; overflow: hidden;
-  }
-
-  .content {
-    flex: 1; overflow-y: auto;
-    padding: 24px 28px;
-  }
+  .content-wrap { flex: 1; display: flex; overflow: hidden; }
+  .content { flex: 1; overflow-y: auto; padding: 24px 28px; }
   .content::-webkit-scrollbar { width: 4px; }
   .content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-  /* ── HERO BANNER ── */
+  /* ── HERO ── */
   .hero {
     background: linear-gradient(135deg, #6D28D9 0%, #7C3AED 40%, #A78BFA 100%);
-    border-radius: var(--radius);
-    padding: 28px 32px;
-    color: white;
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 24px;
-    position: relative; overflow: hidden;
+    border-radius: var(--radius); padding: 28px 32px;
+    color: white; display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px; position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute; top: -40px; right: -40px;
+    content: ''; position: absolute; top: -40px; right: -40px;
     width: 180px; height: 180px; border-radius: 50%;
     background: rgba(255,255,255,0.08);
   }
   .hero::after {
-    content: '';
-    position: absolute; bottom: -60px; right: 80px;
+    content: ''; position: absolute; bottom: -60px; right: 80px;
     width: 140px; height: 140px; border-radius: 50%;
     background: rgba(255,255,255,0.05);
   }
-  .hero h1 {
-    font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700;
-    line-height: 1.3; margin-bottom: 8px;
-  }
+  .hero h1 { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
   .hero p { font-size: 13px; opacity: 0.82; }
   .hero-emoji { font-size: 56px; z-index: 1; }
 
   /* ── STATS ── */
-  .stats-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 16px; margin-bottom: 24px;
-  }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
   .stat-card {
     background: var(--surface); border-radius: var(--radius);
     padding: 18px 20px; border: 1px solid var(--border);
@@ -211,21 +192,13 @@
   .stat-icon.green  { background: #D1FAE5; }
   .stat-icon.orange { background: #FEF3C7; }
   .stat-icon.red    { background: #FEE2E2; }
-  .stat-num {
-    font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 700;
-    color: var(--text); line-height: 1;
-  }
+  .stat-num { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 700; color: var(--text); line-height: 1; }
   .stat-label { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
   /* ── SECTION HEADER ── */
-  .section-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700;
-    color: var(--text);
-  }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .section-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
+
   .btn-primary {
     background: linear-gradient(135deg, var(--purple), var(--purple-light));
     color: white; border: none; border-radius: 10px;
@@ -237,35 +210,26 @@
   .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
   /* ── TASK CARDS ── */
-  .tasks-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-  }
+  .tasks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
   .task-card {
     background: var(--surface); border-radius: var(--radius);
     padding: 18px; border: 1px solid var(--border);
     box-shadow: var(--shadow-card);
     transition: transform 0.18s, box-shadow 0.18s;
-    cursor: pointer;
   }
   .task-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
   .task-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
   .task-card-title { font-weight: 600; font-size: 14px; color: var(--text); line-height: 1.4; flex: 1; }
-  .task-menu { font-size: 18px; color: var(--muted); cursor: pointer; padding: 0 4px; }
-
   .task-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
-
   .task-card-footer { display: flex; align-items: center; justify-content: space-between; }
-  .badge {
-    display: inline-flex; align-items: center;
-    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
-  }
-  .badge-todo      { background: #EFF6FF; color: #3B82F6; }
-  .badge-progress  { background: #FEF3C7; color: #D97706; }
-  .badge-done      { background: #D1FAE5; color: #059669; }
-  .badge-high      { background: #FEE2E2; color: var(--red); }
-  .badge-medium    { background: #FEF3C7; color: var(--orange); }
-  .badge-low       { background: #D1FAE5; color: var(--green); }
+
+  .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .badge-todo     { background: #EFF6FF; color: #3B82F6; }
+  .badge-progress { background: #FEF3C7; color: #D97706; }
+  .badge-done     { background: #D1FAE5; color: #059669; }
+  .badge-high     { background: #FEE2E2; color: var(--red); }
+  .badge-medium   { background: #FEF3C7; color: var(--orange); }
+  .badge-low      { background: #D1FAE5; color: var(--green); }
 
   .task-actions { display: flex; gap: 6px; }
   .btn-sm {
@@ -276,27 +240,110 @@
   .btn-sm.edit { background: var(--purple-pale); color: var(--purple); }
   .btn-sm.del  { background: #FEE2E2; color: var(--red); }
   .btn-sm:hover { opacity: 0.8; }
-
   .due-date { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
 
-  /* ── EMPTY STATE ── */
   .empty-state {
     text-align: center; padding: 48px 20px;
     background: var(--surface); border-radius: var(--radius);
-    border: 2px dashed var(--border);
-    grid-column: 1/-1;
+    border: 2px dashed var(--border); grid-column: 1/-1;
   }
   .empty-state .emoji { font-size: 40px; margin-bottom: 12px; }
   .empty-state h3 { font-family: 'Outfit', sans-serif; font-weight: 600; color: var(--text); margin-bottom: 6px; }
   .empty-state p { font-size: 13px; color: var(--muted); }
 
+  /* ── ACCOUNT PAGE ── */
+  .account-wrap { max-width: 720px; }
+
+  .account-hero {
+    background: linear-gradient(135deg, #6D28D9 0%, #7C3AED 60%, #A78BFA 100%);
+    border-radius: var(--radius); padding: 32px;
+    display: flex; align-items: center; gap: 24px;
+    margin-bottom: 24px; color: white; position: relative; overflow: hidden;
+  }
+  .account-hero::before {
+    content: ''; position: absolute; top: -30px; right: -30px;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  .account-big-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 800; color: white;
+    border: 3px solid rgba(255,255,255,0.4); flex-shrink: 0; z-index: 1;
+  }
+  .account-hero-info { z-index: 1; }
+  .account-hero-info h2 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .account-hero-info p { font-size: 13px; opacity: 0.82; }
+  .account-role-badge {
+    margin-top: 8px; display: inline-block;
+    background: rgba(255,255,255,0.2); color: white;
+    font-size: 11px; font-weight: 700; padding: 3px 12px;
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .account-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin-bottom: 24px;
+  }
+  .account-stat {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 16px; border: 1px solid var(--border);
+    text-align: center; box-shadow: var(--shadow-card);
+  }
+  .account-stat-num { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800; color: var(--purple); }
+  .account-stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+
+  /* Progress bar */
+  .progress-section {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 20px; border: 1px solid var(--border);
+    box-shadow: var(--shadow-card); margin-bottom: 24px;
+  }
+  .progress-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 16px; color: var(--text); }
+  .progress-row { margin-bottom: 12px; }
+  .progress-row-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+  .progress-bar-bg { background: var(--bg); border-radius: 99px; height: 8px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
+  .bar-blue   { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+  .bar-orange { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+  .bar-green  { background: linear-gradient(90deg, #10B981, #34D399); }
+
+  /* Recent tasks list */
+  .recent-section {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 20px; border: 1px solid var(--border);
+    box-shadow: var(--shadow-card); margin-bottom: 24px;
+  }
+  .recent-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 16px; color: var(--text); }
+  .recent-task-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .recent-task-row:last-child { border-bottom: none; }
+  .recent-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .recent-task-info { flex: 1; min-width: 0; }
+  .recent-task-title { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .recent-task-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .recent-task-date { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+
+  /* Logout button */
+  .btn-logout {
+    width: 100%; padding: 14px; border-radius: 12px;
+    background: #FEE2E2; color: var(--red);
+    border: 1.5px solid #FECACA; font-size: 14px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.18s; font-family: 'DM Sans', sans-serif;
+    margin-top: 8px;
+  }
+  .btn-logout:hover { background: #FCA5A5; border-color: var(--red); }
+
   /* ── RIGHT PANEL ── */
   .right-panel {
-    width: var(--right-w);
-    background: var(--surface);
+    width: var(--right-w); background: var(--surface);
     border-left: 1px solid var(--border);
-    padding: 24px 20px;
-    overflow-y: auto; flex-shrink: 0;
+    padding: 24px 20px; overflow-y: auto; flex-shrink: 0;
   }
   .right-panel::-webkit-scrollbar { width: 4px; }
   .right-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -306,7 +353,6 @@
   .cal-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); }
   .cal-nav { background: none; border: none; cursor: pointer; font-size: 16px; color: var(--muted); padding: 4px; }
   .cal-nav:hover { color: var(--purple); }
-
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
   .cal-day-label { text-align: center; font-size: 10px; font-weight: 600; color: var(--muted); padding: 4px 0; }
   .cal-day {
@@ -328,15 +374,14 @@
   .today-task {
     padding: 12px 14px; border-radius: 12px;
     background: var(--bg); border: 1px solid var(--border);
-    margin-bottom: 10px; cursor: pointer; transition: all 0.15s;
+    margin-bottom: 10px; transition: all 0.15s;
   }
   .today-task:hover { border-color: var(--purple-light); background: var(--purple-pale); }
   .today-task-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
   .today-task-meta { display: flex; align-items: center; gap: 8px; }
   .today-dot { width: 7px; height: 7px; border-radius: 50%; }
 
-  /* ── ADMIN PANEL ── */
-  .admin-section { margin-top: 24px; }
+  /* ── ADMIN ── */
   .user-row {
     display: flex; align-items: center; gap: 10px;
     padding: 10px 0; border-bottom: 1px solid var(--border);
@@ -350,11 +395,8 @@
   }
   .user-row-info { flex: 1; min-width: 0; }
   .user-row-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .user-row-email { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .role-badge {
-    font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px;
-    background: var(--purple-pale); color: var(--purple);
-  }
+  .user-row-email { font-size: 11px; color: var(--muted); }
+  .role-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; background: var(--purple-pale); color: var(--purple); }
   .role-badge.admin-badge { background: #FEE2E2; color: var(--red); }
 
   /* ── MODAL ── */
@@ -392,21 +434,17 @@
   }
   .btn-ghost:hover { border-color: var(--purple-light); color: var(--purple); }
 
-  /* ── AUTH SCREEN ── */
+  /* ── AUTH ── */
   #auth-screen {
     position: fixed; inset: 0; background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 200;
+    display: flex; align-items: center; justify-content: center; z-index: 200;
   }
   .auth-card {
     background: white; border-radius: 24px; padding: 40px;
     width: 400px; max-width: 95vw;
     box-shadow: 0 20px 60px rgba(124,58,237,0.15);
   }
-  .auth-logo {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 32px;
-    justify-content: center;
-  }
+  .auth-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; justify-content: center; }
   .auth-logo-icon {
     width: 44px; height: 44px; border-radius: 14px;
     background: linear-gradient(135deg, var(--purple), var(--purple-light));
@@ -417,8 +455,7 @@
   .auth-tabs { display: flex; gap: 4px; background: var(--bg); border-radius: 12px; padding: 4px; margin-bottom: 24px; }
   .auth-tab {
     flex: 1; text-align: center; padding: 8px; border-radius: 8px;
-    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s;
-    color: var(--muted);
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s; color: var(--muted);
   }
   .auth-tab.active { background: white; color: var(--purple); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
   .auth-title { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
@@ -426,16 +463,11 @@
   .auth-error { background: #FEE2E2; color: var(--red); border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px; display: none; }
   .auth-error.show { display: block; }
 
-  /* ── LOADING ── */
+  /* ── MISC ── */
   .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--muted); font-size: 13px; gap: 8px; }
-  .spinner {
-    width: 16px; height: 16px; border: 2px solid var(--border);
-    border-top-color: var(--purple); border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
+  .spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── TOAST ── */
   .toast {
     position: fixed; bottom: 24px; right: 24px;
     background: var(--text); color: white;
@@ -446,22 +478,15 @@
   }
   .toast.show { transform: translateY(0); opacity: 1; }
   .toast.success { background: #065F46; }
-  .toast.error { background: #991B1B; }
+  .toast.error   { background: #991B1B; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1100px) {
-    .right-panel { display: none; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 700px) {
-    .sidebar { display: none; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  @media (max-width: 1100px) { .right-panel { display: none; } .stats-grid, .account-stats { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 700px)  { .sidebar { display: none; } }
 </style>
 </head>
 <body>
 
-<!-- ── AUTH SCREEN ── -->
+<!-- ── AUTH ── -->
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">
@@ -472,8 +497,6 @@
       <div class="auth-tab active" onclick="switchTab('login')">Sign In</div>
       <div class="auth-tab" onclick="switchTab('register')">Register</div>
     </div>
-
-    <!-- Login -->
     <div id="login-form">
       <h2 class="auth-title">Welcome back 👋</h2>
       <p class="auth-sub">Sign in to manage your tasks</p>
@@ -488,8 +511,6 @@
       </div>
       <button class="btn-primary" style="width:100%;justify-content:center;padding:12px" onclick="doLogin()">Sign In →</button>
     </div>
-
-    <!-- Register -->
     <div id="register-form" style="display:none">
       <h2 class="auth-title">Create account ✦</h2>
       <p class="auth-sub">Get started with TaskFlow for free</p>
@@ -512,7 +533,7 @@
 </div>
 
 <!-- ── APP ── -->
-<div id="app" style="display:none;width:100%;height:100vh;display:none;flex-direction:row;">
+<div id="app" style="display:none;width:100%;height:100vh;flex-direction:row;">
 
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -520,36 +541,34 @@
       <div class="logo-icon">✦</div>
       <span class="logo-text">TaskFlow</span>
     </div>
-
     <div class="nav-label">Menu</div>
     <nav class="nav">
-      <a class="nav-item active" onclick="showSection('dashboard')">
+      <button class="nav-item active" onclick="showSection('dashboard', this)">
         <span class="icon">⊞</span> Dashboard
-      </a>
-      <a class="nav-item" onclick="showSection('tasks')">
+      </button>
+      <button class="nav-item" onclick="showSection('tasks', this)">
         <span class="icon">✓</span> My Tasks
         <span class="nav-badge" id="task-count-badge">0</span>
-      </a>
-      <a class="nav-item" onclick="showSection('admin')" id="admin-nav" style="display:none">
+      </button>
+      <button class="nav-item" onclick="showSection('admin', this)" id="admin-nav" style="display:none">
         <span class="icon">⚙</span> Admin
-      </a>
+      </button>
     </nav>
-
     <div class="sidebar-bottom">
-      <div class="user-card">
+      <!-- Clicking user card opens account page -->
+      <div class="user-card" onclick="showSection('account', null)">
         <div class="user-avatar" id="sidebar-avatar">S</div>
         <div class="user-info">
           <div class="user-name" id="sidebar-username">Loading...</div>
           <div class="user-role" id="sidebar-role">user</div>
         </div>
-        <span style="cursor:pointer;color:var(--muted);font-size:14px" onclick="doLogout()" title="Logout">⎋</span>
+        <span style="font-size:13px;color:var(--muted)">›</span>
       </div>
     </div>
   </aside>
 
   <!-- Main -->
   <div class="main">
-    <!-- Topbar -->
     <div class="topbar">
       <div class="topbar-greeting">
         <h2 id="topbar-greeting">Hi, User 👋</h2>
@@ -559,22 +578,18 @@
         <span>🔍</span>
         <input id="search-input" placeholder="Search tasks..." oninput="filterTasks()" />
       </div>
-      <div class="btn-icon" onclick="openCreateModal()">
+      <div class="btn-icon" onclick="openCreateModal()" title="New Task">
         <span>＋</span>
       </div>
-      <div class="btn-icon">
-        <span>🔔</span>
-        <div class="notif-dot"></div>
-      </div>
+      <!-- Profile icon in topbar → opens account page -->
+      <div class="topbar-avatar" id="topbar-avatar" onclick="showSection('account', null)" title="My Account">S</div>
     </div>
 
-    <!-- Content + Right Panel -->
     <div class="content-wrap">
       <div class="content">
 
-        <!-- Dashboard Section -->
+        <!-- Dashboard -->
         <div id="section-dashboard">
-          <!-- Hero -->
           <div class="hero">
             <div>
               <h1>Optimize Your Project<br>and Performance</h1>
@@ -582,40 +597,24 @@
             </div>
             <div class="hero-emoji">🚀</div>
           </div>
-
-          <!-- Stats -->
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-icon purple">📋</div>
-              <div>
-                <div class="stat-num" id="stat-total">0</div>
-                <div class="stat-label">Total Tasks</div>
-              </div>
+              <div><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Tasks</div></div>
             </div>
             <div class="stat-card">
               <div class="stat-icon orange">⏳</div>
-              <div>
-                <div class="stat-num" id="stat-todo">0</div>
-                <div class="stat-label">To Do</div>
-              </div>
+              <div><div class="stat-num" id="stat-todo">0</div><div class="stat-label">To Do</div></div>
             </div>
             <div class="stat-card">
               <div class="stat-icon purple">🔄</div>
-              <div>
-                <div class="stat-num" id="stat-progress">0</div>
-                <div class="stat-label">In Progress</div>
-              </div>
+              <div><div class="stat-num" id="stat-progress">0</div><div class="stat-label">In Progress</div></div>
             </div>
             <div class="stat-card">
               <div class="stat-icon green">✅</div>
-              <div>
-                <div class="stat-num" id="stat-done">0</div>
-                <div class="stat-label">Completed</div>
-              </div>
+              <div><div class="stat-num" id="stat-done">0</div><div class="stat-label">Completed</div></div>
             </div>
           </div>
-
-          <!-- Upcoming Tasks -->
           <div class="section-header">
             <span class="section-title">Upcoming Tasks</span>
             <button class="btn-primary" onclick="openCreateModal()">＋ New Task</button>
@@ -625,7 +624,7 @@
           </div>
         </div>
 
-        <!-- Tasks Section -->
+        <!-- My Tasks -->
         <div id="section-tasks" style="display:none">
           <div class="section-header">
             <span class="section-title">All My Tasks</span>
@@ -636,19 +635,88 @@
           </div>
         </div>
 
-        <!-- Admin Section -->
+        <!-- Admin -->
         <div id="section-admin" style="display:none">
+          <div class="section-header"><span class="section-title">Admin — All Users</span></div>
+          <div id="admin-users"><div class="loading"><div class="spinner"></div> Loading…</div></div>
+          <div class="section-header" style="margin-top:28px"><span class="section-title">All Tasks (Every User)</span></div>
+          <div class="tasks-grid" id="admin-tasks"><div class="loading"><div class="spinner"></div> Loading…</div></div>
+        </div>
+
+        <!-- Account Page -->
+        <div id="section-account" style="display:none">
           <div class="section-header">
-            <span class="section-title">Admin — All Users</span>
+            <span class="section-title">My Account</span>
           </div>
-          <div id="admin-users">
-            <div class="loading"><div class="spinner"></div> Loading…</div>
-          </div>
-          <div class="section-header" style="margin-top:28px">
-            <span class="section-title">All Tasks (Every User)</span>
-          </div>
-          <div class="tasks-grid" id="admin-tasks">
-            <div class="loading"><div class="spinner"></div> Loading…</div>
+          <div class="account-wrap">
+
+            <!-- Profile hero -->
+            <div class="account-hero">
+              <div class="account-big-avatar" id="acc-avatar">S</div>
+              <div class="account-hero-info">
+                <h2 id="acc-username">Username</h2>
+                <p id="acc-email">email@example.com</p>
+                <span class="account-role-badge" id="acc-role">user</span>
+              </div>
+            </div>
+
+            <!-- Activity stats -->
+            <div class="account-stats">
+              <div class="account-stat">
+                <div class="account-stat-num" id="acc-total">0</div>
+                <div class="account-stat-label">Total Tasks</div>
+              </div>
+              <div class="account-stat">
+                <div class="account-stat-num" id="acc-todo" style="color:#3B82F6">0</div>
+                <div class="account-stat-label">To Do</div>
+              </div>
+              <div class="account-stat">
+                <div class="account-stat-num" id="acc-progress" style="color:var(--orange)">0</div>
+                <div class="account-stat-label">In Progress</div>
+              </div>
+              <div class="account-stat">
+                <div class="account-stat-num" id="acc-done" style="color:var(--green)">0</div>
+                <div class="account-stat-label">Completed</div>
+              </div>
+            </div>
+
+            <!-- Progress bars -->
+            <div class="progress-section">
+              <div class="progress-title">Task Completion Overview</div>
+              <div class="progress-row">
+                <div class="progress-row-top">
+                  <span style="color:#3B82F6">To Do</span>
+                  <span id="pct-todo">0%</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill bar-blue" id="bar-todo" style="width:0%"></div></div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-row-top">
+                  <span style="color:var(--orange)">In Progress</span>
+                  <span id="pct-progress">0%</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill bar-orange" id="bar-progress" style="width:0%"></div></div>
+              </div>
+              <div class="progress-row" style="margin-bottom:0">
+                <div class="progress-row-top">
+                  <span style="color:var(--green)">Completed</span>
+                  <span id="pct-done">0%</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill bar-green" id="bar-done" style="width:0%"></div></div>
+              </div>
+            </div>
+
+            <!-- Recent tasks -->
+            <div class="recent-section">
+              <div class="recent-title">Recent Tasks</div>
+              <div id="recent-tasks-list"></div>
+            </div>
+
+            <!-- Logout -->
+            <button class="btn-logout" onclick="doLogout()">
+              <span>⎋</span> Logout
+            </button>
+
           </div>
         </div>
 
@@ -656,7 +724,6 @@
 
       <!-- Right Panel -->
       <aside class="right-panel">
-        <!-- Calendar -->
         <div class="cal-header">
           <span class="cal-title" id="cal-month-title">March 2026</span>
           <div style="display:flex;gap:4px">
@@ -665,27 +732,20 @@
           </div>
         </div>
         <div class="cal-grid" id="cal-grid"></div>
-
-        <!-- Today's Tasks -->
         <div class="today-section">
           <div class="today-title">Task Today</div>
           <div id="today-tasks"></div>
         </div>
-
-        <!-- Admin Users (right panel) -->
-        <div id="admin-right" style="display:none">
-          <div class="admin-section">
-            <div class="today-title">All Users</div>
-            <div id="admin-right-users"></div>
-          </div>
+        <div id="admin-right" style="display:none;margin-top:24px">
+          <div class="today-title">All Users</div>
+          <div id="admin-right-users"></div>
         </div>
       </aside>
-
     </div>
   </div>
 </div>
 
-<!-- ── CREATE / EDIT MODAL ── -->
+<!-- Modal -->
 <div class="modal-overlay" id="task-modal">
   <div class="modal">
     <div class="modal-title" id="modal-title">Create New Task</div>
@@ -726,18 +786,16 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ── CONFIG ──────────────────────────────────────────────────────────────
-const API = '';  // same origin; change to 'http://localhost:8000' if needed
+const API = '';
 let token = localStorage.getItem('tf_token') || '';
 let currentUser = null;
 let allTasks = [];
 let editingTaskId = null;
 
-// ── UTILS ────────────────────────────────────────────────────────────────
+// ── UTILS ─────────────────────────────────────────────────────────────────
 function toast(msg, type='success') {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -754,13 +812,17 @@ async function api(method, path, body) {
   return data;
 }
 
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 // ── AUTH ─────────────────────────────────────────────────────────────────
 function switchTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach((el, i) => {
-    el.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
+  document.querySelectorAll('.auth-tab').forEach((el,i) => {
+    el.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='register'));
   });
-  document.getElementById('login-form').style.display = tab === 'login' ? '' : 'none';
-  document.getElementById('register-form').style.display = tab === 'register' ? '' : 'none';
+  document.getElementById('login-form').style.display = tab==='login' ? '' : 'none';
+  document.getElementById('register-form').style.display = tab==='register' ? '' : 'none';
 }
 
 async function doLogin() {
@@ -773,10 +835,7 @@ async function doLogin() {
     token = data.access_token;
     localStorage.setItem('tf_token', token);
     await initApp();
-  } catch(e) {
-    errEl.textContent = e.message;
-    errEl.classList.add('show');
-  }
+  } catch(e) { errEl.textContent = e.message; errEl.classList.add('show'); }
 }
 
 async function doRegister() {
@@ -790,10 +849,7 @@ async function doRegister() {
     toast('Account created! Please sign in.', 'success');
     switchTab('login');
     document.getElementById('login-username').value = username;
-  } catch(e) {
-    errEl.textContent = e.message;
-    errEl.classList.add('show');
-  }
+  } catch(e) { errEl.textContent = e.message; errEl.classList.add('show'); }
 }
 
 function doLogout() {
@@ -804,19 +860,16 @@ function doLogout() {
 
 // ── INIT ─────────────────────────────────────────────────────────────────
 async function initApp() {
-  try {
-    currentUser = await api('GET', '/api/v1/users/me');
-  } catch {
-    doLogout(); return;
-  }
+  try { currentUser = await api('GET', '/api/v1/users/me'); }
+  catch { doLogout(); return; }
 
   document.getElementById('auth-screen').style.display = 'none';
   const app = document.getElementById('app');
   app.style.display = 'flex';
 
-  // Sidebar
   const initial = currentUser.username[0].toUpperCase();
   document.getElementById('sidebar-avatar').textContent = initial;
+  document.getElementById('topbar-avatar').textContent = initial;
   document.getElementById('sidebar-username').textContent = currentUser.username;
   document.getElementById('sidebar-role').textContent = currentUser.role;
   document.getElementById('topbar-greeting').textContent = `Hi, ${currentUser.username} 👋`;
@@ -828,7 +881,6 @@ async function initApp() {
 
   buildCalendar();
   await loadTasks();
-  renderTodayTasks();
 }
 
 // ── TASKS ─────────────────────────────────────────────────────────────────
@@ -839,34 +891,31 @@ async function loadTasks() {
     renderDashboardTasks();
     renderAllTasks();
     renderTodayTasks();
+    renderAccountPage();
     document.getElementById('task-count-badge').textContent = allTasks.length;
     if (currentUser.role === 'admin') await loadAdminUsers();
-  } catch(e) {
-    toast(e.message, 'error');
-  }
+  } catch(e) { toast(e.message, 'error'); }
 }
 
 function renderStats() {
-  document.getElementById('stat-total').textContent = allTasks.length;
-  document.getElementById('stat-todo').textContent = allTasks.filter(t => t.status === 'todo').length;
-  document.getElementById('stat-progress').textContent = allTasks.filter(t => t.status === 'in_progress').length;
-  document.getElementById('stat-done').textContent = allTasks.filter(t => t.status === 'done').length;
+  document.getElementById('stat-total').textContent    = allTasks.length;
+  document.getElementById('stat-todo').textContent     = allTasks.filter(t=>t.status==='todo').length;
+  document.getElementById('stat-progress').textContent = allTasks.filter(t=>t.status==='in_progress').length;
+  document.getElementById('stat-done').textContent     = allTasks.filter(t=>t.status==='done').length;
 }
 
 function taskCardHTML(task) {
-  const statusMap = { todo: ['badge-todo','To Do'], in_progress: ['badge-progress','In Progress'], done: ['badge-done','Done'] };
-  const priorityMap = { low: ['badge-low','Low'], medium: ['badge-medium','Medium'], high: ['badge-high','High'] };
-  const [sCls, sLabel] = statusMap[task.status] || ['badge-todo','To Do'];
-  const [pCls, pLabel] = priorityMap[task.priority] || ['badge-medium','Medium'];
+  const sm = { todo:['badge-todo','To Do'], in_progress:['badge-progress','In Progress'], done:['badge-done','Done'] };
+  const pm = { low:['badge-low','Low'], medium:['badge-medium','Medium'], high:['badge-high','High'] };
+  const [sCls,sLabel] = sm[task.status]||['badge-todo','To Do'];
+  const [pCls,pLabel] = pm[task.priority]||['badge-medium','Medium'];
   const due = task.due_date ? `<span class="due-date">📅 ${new Date(task.due_date).toLocaleDateString()}</span>` : '';
-
   return `
-    <div class="task-card" id="tc-${task.id}">
+    <div class="task-card">
       <div class="task-card-top">
         <div class="task-card-title">${escHtml(task.title)}</div>
-        <span class="task-menu">⋯</span>
       </div>
-      ${task.description ? `<div class="task-desc">${escHtml(task.description)}</div>` : ''}
+      ${task.description?`<div class="task-desc">${escHtml(task.description)}</div>`:''}
       <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
         <span class="badge ${sCls}">${sLabel}</span>
         <span class="badge ${pCls}">↑ ${pLabel}</span>
@@ -875,7 +924,7 @@ function taskCardHTML(task) {
         ${due}
         <div class="task-actions" style="margin-left:auto">
           <button class="btn-sm edit" onclick="openEditModal(${task.id})">Edit</button>
-          <button class="btn-sm del" onclick="deleteTask(${task.id})">Delete</button>
+          <button class="btn-sm del"  onclick="deleteTask(${task.id})">Delete</button>
         </div>
       </div>
     </div>`;
@@ -883,7 +932,7 @@ function taskCardHTML(task) {
 
 function renderDashboardTasks() {
   const el = document.getElementById('dashboard-tasks');
-  const upcoming = [...allTasks].filter(t => t.status !== 'done').slice(0, 6);
+  const upcoming = allTasks.filter(t=>t.status!=='done').slice(0,6);
   el.innerHTML = upcoming.length
     ? upcoming.map(taskCardHTML).join('')
     : `<div class="empty-state"><div class="emoji">🎉</div><h3>All done!</h3><p>No pending tasks. Create one to get started.</p></div>`;
@@ -899,37 +948,85 @@ function renderAllTasks(filtered) {
 
 function filterTasks() {
   const q = document.getElementById('search-input').value.toLowerCase();
-  const filtered = allTasks.filter(t => t.title.toLowerCase().includes(q) || (t.description||'').toLowerCase().includes(q));
-  renderAllTasks(filtered);
+  renderAllTasks(allTasks.filter(t=>t.title.toLowerCase().includes(q)||(t.description||'').toLowerCase().includes(q)));
 }
 
 function renderTodayTasks() {
   const today = new Date().toDateString();
   const el = document.getElementById('today-tasks');
-  const todayTasks = allTasks.filter(t => t.due_date && new Date(t.due_date).toDateString() === today);
-  const statusColors = { todo: '#3B82F6', in_progress: '#D97706', done: '#059669' };
+  const todayTasks = allTasks.filter(t=>t.due_date&&new Date(t.due_date).toDateString()===today);
+  const colors = { todo:'#3B82F6', in_progress:'#D97706', done:'#059669' };
+  el.innerHTML = todayTasks.length
+    ? todayTasks.map(t=>`
+        <div class="today-task">
+          <div class="today-task-title">${escHtml(t.title)}</div>
+          <div class="today-task-meta">
+            <div class="today-dot" style="background:${colors[t.status]||'#6B7280'}"></div>
+            <span style="font-size:11px;color:var(--muted)">${t.status.replace('_',' ')}</span>
+          </div>
+        </div>`).join('')
+    : `<div style="font-size:13px;color:var(--muted);padding:12px 0">No tasks due today 🎉</div>`;
+}
 
-  if (!todayTasks.length) {
-    el.innerHTML = `<div style="font-size:13px;color:var(--muted);padding:12px 0">No tasks due today 🎉</div>`;
-    return;
-  }
-  el.innerHTML = todayTasks.map(t => `
-    <div class="today-task">
-      <div class="today-task-title">${escHtml(t.title)}</div>
-      <div class="today-task-meta">
-        <div class="today-dot" style="background:${statusColors[t.status]||'#6B7280'}"></div>
-        <span style="font-size:11px;color:var(--muted)">${t.status.replace('_',' ')}</span>
-      </div>
-    </div>`).join('');
+// ── ACCOUNT PAGE ──────────────────────────────────────────────────────────
+function renderAccountPage() {
+  if (!currentUser) return;
+
+  // Profile
+  const initial = currentUser.username[0].toUpperCase();
+  document.getElementById('acc-avatar').textContent   = initial;
+  document.getElementById('acc-username').textContent = currentUser.username;
+  document.getElementById('acc-email').textContent    = currentUser.email;
+  document.getElementById('acc-role').textContent     = currentUser.role;
+
+  // Stats
+  const total    = allTasks.length;
+  const todoC    = allTasks.filter(t=>t.status==='todo').length;
+  const progC    = allTasks.filter(t=>t.status==='in_progress').length;
+  const doneC    = allTasks.filter(t=>t.status==='done').length;
+
+  document.getElementById('acc-total').textContent    = total;
+  document.getElementById('acc-todo').textContent     = todoC;
+  document.getElementById('acc-progress').textContent = progC;
+  document.getElementById('acc-done').textContent     = doneC;
+
+  // Progress bars
+  const pct = n => total > 0 ? Math.round((n/total)*100) : 0;
+  const todoPct = pct(todoC), progPct = pct(progC), donePct = pct(doneC);
+
+  document.getElementById('pct-todo').textContent     = todoPct + '%';
+  document.getElementById('pct-progress').textContent = progPct + '%';
+  document.getElementById('pct-done').textContent     = donePct + '%';
+  setTimeout(() => {
+    document.getElementById('bar-todo').style.width     = todoPct + '%';
+    document.getElementById('bar-progress').style.width = progPct + '%';
+    document.getElementById('bar-done').style.width     = donePct + '%';
+  }, 100);
+
+  // Recent tasks (last 8)
+  const recent = [...allTasks].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,8);
+  const colors = { todo:'#3B82F6', in_progress:'#D97706', done:'#059669' };
+  const statusLabel = { todo:'To Do', in_progress:'In Progress', done:'Done' };
+  const prioLabel = { low:'Low', medium:'Medium', high:'High' };
+
+  document.getElementById('recent-tasks-list').innerHTML = recent.length
+    ? recent.map(t=>`
+        <div class="recent-task-row">
+          <div class="recent-dot" style="background:${colors[t.status]||'#6B7280'}"></div>
+          <div class="recent-task-info">
+            <div class="recent-task-title">${escHtml(t.title)}</div>
+            <div class="recent-task-meta">${statusLabel[t.status]||t.status} · Priority: ${prioLabel[t.priority]||t.priority}</div>
+          </div>
+          <div class="recent-task-date">${new Date(t.created_at).toLocaleDateString()}</div>
+        </div>`).join('')
+    : `<div style="font-size:13px;color:var(--muted);padding:12px 0">No tasks yet.</div>`;
 }
 
 // ── ADMIN ──────────────────────────────────────────────────────────────────
 async function loadAdminUsers() {
   try {
     const users = await api('GET', '/api/v1/users/');
-
-    // Right panel
-    document.getElementById('admin-right-users').innerHTML = users.map(u => `
+    const userRowHTML = u => `
       <div class="user-row">
         <div class="user-row-avatar">${u.username[0].toUpperCase()}</div>
         <div class="user-row-info">
@@ -937,30 +1034,20 @@ async function loadAdminUsers() {
           <div class="user-row-email">${escHtml(u.email)}</div>
         </div>
         <span class="role-badge ${u.role==='admin'?'admin-badge':''}">${u.role}</span>
-      </div>`).join('');
-
-    // Admin section
-    document.getElementById('admin-users').innerHTML = `
-      <div style="background:white;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden">
-        ${users.map(u => `
-          <div class="user-row" style="padding:12px 20px">
-            <div class="user-row-avatar" style="width:40px;height:40px;font-size:15px">${u.username[0].toUpperCase()}</div>
-            <div class="user-row-info">
-              <div class="user-row-name">${escHtml(u.username)}</div>
-              <div class="user-row-email">${escHtml(u.email)}</div>
-            </div>
-            <span class="role-badge ${u.role==='admin'?'admin-badge':''}">${u.role}</span>
-          </div>`).join('')}
       </div>`;
 
-    document.getElementById('admin-tasks').innerHTML = allTasks.map(taskCardHTML).join('') ||
+    document.getElementById('admin-right-users').innerHTML = users.map(userRowHTML).join('');
+    document.getElementById('admin-users').innerHTML = `
+      <div style="background:white;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;padding:0 20px">
+        ${users.map(userRowHTML).join('')}
+      </div>`;
+    document.getElementById('admin-tasks').innerHTML =
+      allTasks.map(taskCardHTML).join('') ||
       `<div class="empty-state"><div class="emoji">📭</div><h3>No tasks</h3></div>`;
-  } catch(e) {
-    toast('Could not load admin data', 'error');
-  }
+  } catch(e) { toast('Could not load admin data', 'error'); }
 }
 
-// ── MODAL ───────────────────────────────────────────────────────────────────
+// ── MODAL ────────────────────────────────────────────────────────────────
 function openCreateModal() {
   editingTaskId = null;
   document.getElementById('modal-title').textContent = 'Create New Task';
@@ -974,7 +1061,7 @@ function openCreateModal() {
 }
 
 function openEditModal(id) {
-  const task = allTasks.find(t => t.id === id);
+  const task = allTasks.find(t=>t.id===id);
   if (!task) return;
   editingTaskId = id;
   document.getElementById('modal-title').textContent = 'Edit Task';
@@ -987,22 +1074,18 @@ function openEditModal(id) {
   document.getElementById('task-modal').classList.add('open');
 }
 
-function closeModal() {
-  document.getElementById('task-modal').classList.remove('open');
-}
+function closeModal() { document.getElementById('task-modal').classList.remove('open'); }
 
 async function submitTask() {
   const title = document.getElementById('task-title').value.trim();
   if (!title) { toast('Title is required', 'error'); return; }
-
   const body = {
     title,
     description: document.getElementById('task-desc').value.trim() || null,
-    status: document.getElementById('task-status').value,
+    status:   document.getElementById('task-status').value,
     priority: document.getElementById('task-priority').value,
     due_date: document.getElementById('task-due').value || null,
   };
-
   try {
     if (editingTaskId) {
       await api('PUT', `/api/v1/tasks/${editingTaskId}`, body);
@@ -1013,9 +1096,7 @@ async function submitTask() {
     }
     closeModal();
     await loadTasks();
-  } catch(e) {
-    toast(e.message, 'error');
-  }
+  } catch(e) { toast(e.message, 'error'); }
 }
 
 async function deleteTask(id) {
@@ -1024,21 +1105,20 @@ async function deleteTask(id) {
     await api('DELETE', `/api/v1/tasks/${id}`);
     toast('Task deleted', 'success');
     await loadTasks();
-  } catch(e) {
-    toast(e.message, 'error');
-  }
+  } catch(e) { toast(e.message, 'error'); }
 }
 
-// ── NAVIGATION ───────────────────────────────────────────────────────────────
-function showSection(name) {
-  ['dashboard','tasks','admin'].forEach(s => {
-    document.getElementById(`section-${s}`).style.display = s === name ? '' : 'none';
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+function showSection(name, el) {
+  ['dashboard','tasks','admin','account'].forEach(s => {
+    document.getElementById(`section-${s}`).style.display = s===name ? '' : 'none';
   });
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  if (name === 'account') renderAccountPage();
 }
 
-// ── CALENDAR ─────────────────────────────────────────────────────────────────
+// ── CALENDAR ─────────────────────────────────────────────────────────────
 let calDate = new Date();
 
 function buildCalendar() {
@@ -1049,67 +1129,47 @@ function buildCalendar() {
   const grid = document.getElementById('cal-grid');
   const days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
   const today = new Date();
-
-  // Collect due dates
-  const dueDates = new Set(allTasks.filter(t => t.due_date).map(t => {
+  const dueDates = new Set(allTasks.filter(t=>t.due_date).map(t=>{
     const d = new Date(t.due_date);
     return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
   }));
 
-  let html = days.map(d => `<div class="cal-day-label">${d}</div>`).join('');
+  let html = days.map(d=>`<div class="cal-day-label">${d}</div>`).join('');
+  const first = new Date(year,month,1).getDay();
+  const last  = new Date(year,month+1,0).getDate();
+  const prevLast = new Date(year,month,0).getDate();
 
-  const first = new Date(year, month, 1).getDay();
-  const last = new Date(year, month+1, 0).getDate();
+  for (let i=first-1;i>=0;i--)
+    html += `<div class="cal-day other-month">${prevLast-i}</div>`;
 
-  // Prev month days
-  const prevLast = new Date(year, month, 0).getDate();
-  for (let i = first - 1; i >= 0; i--)
-    html += `<div class="cal-day other-month">${prevLast - i}</div>`;
-
-  // Current month
-  for (let d = 1; d <= last; d++) {
-    const isToday = d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-    const key = `${year}-${month}-${d}`;
-    const hasTask = dueDates.has(key) ? ' has-task' : '';
+  for (let d=1;d<=last;d++) {
+    const isToday = d===today.getDate()&&month===today.getMonth()&&year===today.getFullYear();
+    const hasTask = dueDates.has(`${year}-${month}-${d}`) ? ' has-task' : '';
     html += `<div class="cal-day${isToday?' today':''}${hasTask}">${d}</div>`;
   }
 
-  // Next month
-  const filled = first + last;
-  const remaining = filled % 7 === 0 ? 0 : 7 - (filled % 7);
-  for (let d = 1; d <= remaining; d++)
+  const filled = first+last;
+  const remaining = filled%7===0?0:7-(filled%7);
+  for (let d=1;d<=remaining;d++)
     html += `<div class="cal-day other-month">${d}</div>`;
 
   grid.innerHTML = html;
 }
 
-function calPrev() { calDate.setMonth(calDate.getMonth() - 1); buildCalendar(); }
-function calNext() { calDate.setMonth(calDate.getMonth() + 1); buildCalendar(); }
+function calPrev() { calDate.setMonth(calDate.getMonth()-1); buildCalendar(); }
+function calNext() { calDate.setMonth(calDate.getMonth()+1); buildCalendar(); }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
-function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// Close modal on overlay click
+// ── EVENTS ────────────────────────────────────────────────────────────────
 document.getElementById('task-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
+  if (e.target===this) closeModal();
 });
-
-// Enter key on login
 document.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    if (document.getElementById('login-form').style.display !== 'none' &&
-        document.getElementById('auth-screen').style.display !== 'none') doLogin();
-  }
+  if (e.key==='Enter' && document.getElementById('auth-screen').style.display!=='none') doLogin();
 });
 
-// ── BOOT ────────────────────────────────────────────────────────────────────
-if (token) {
-  initApp();
-} else {
-  document.getElementById('auth-screen').style.display = 'flex';
-}
+// ── BOOT ─────────────────────────────────────────────────────────────────
+if (token) { initApp(); }
+else { document.getElementById('auth-screen').style.display = 'flex'; }
 </script>
 </body>
 </html>
